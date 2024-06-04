@@ -3,6 +3,9 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/sections/Navbar";
+import Container from "@/components/ui/Container";
+import { Toaster } from "@/components/ui/toaster";
+import { RecoilRoot } from "recoil";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,12 +26,16 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased p-4 md:px-20 md:py-8 lg:px-52 lg:py-10",
+          "min-h-screen bg-background font-sans antialiased ",
           fontSans.variable
         )}
       >
-        <Navbar />
-        {children}
+        <Container>
+          <Navbar />
+          {children}
+        </Container>
+
+        <Toaster />
       </body>
     </html>
   );

@@ -13,9 +13,9 @@ const getDetailPosts = async (id: number, userId: number) => {
   const resUser = await posts.getByUserId(userId);
 
   return {
-    post: resDetailPost.data,
-    comments: resComments.data,
-    user: resUser.data,
+    post: resDetailPost?.data,
+    comments: resComments?.data,
+    user: resUser?.data,
   };
 };
 
@@ -24,9 +24,9 @@ export default async function DetailPost({
 }: {
   params: { id: string[] };
 }) {
-  let postId = parseInt(params.id[0]);
+  let postId = parseInt(params?.id[0]);
 
-  let userId = parseInt(params.id[1]);
+  let userId = parseInt(params?.id[1]);
 
   const {
     post,

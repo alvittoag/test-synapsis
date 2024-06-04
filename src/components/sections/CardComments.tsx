@@ -4,9 +4,9 @@ import React from "react";
 export default function CardComments({ comments }: { comments: IComments[] }) {
   return (
     <main className="space-y-7 py-5">
-      <h1 className="font-bold text-lg">Comments {comments.length}</h1>
+      <h1 className="font-bold text-lg">Comments {comments?.length}</h1>
 
-      {comments.length === 0 && (
+      {comments?.length === 0 && (
         <p className="text-gray-500">No comments yet</p>
       )}
 

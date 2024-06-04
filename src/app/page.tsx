@@ -3,7 +3,7 @@ import posts from "@/services/posts";
 import { IPosts } from "@/type";
 import React from "react";
 
-export const getPosts = async () => {
+const getPosts = async () => {
   const res = await posts.getAll();
 
   return res.data;

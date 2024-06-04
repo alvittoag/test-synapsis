@@ -5,7 +5,7 @@ import posts from "@/services/posts";
 import { IComments, IPosts, IUsers } from "@/type";
 import React from "react";
 
-export const getDetailPosts = async (id: number, userId: number) => {
+const getDetailPosts = async (id: number, userId: number) => {
   const resDetailPost = await posts.getById(id);
 
   const resComments = await posts.getByComments(id);

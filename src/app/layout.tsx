@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/sections/Navbar";
 import Container from "@/components/ui/Container";
 import { Toaster } from "@/components/ui/toaster";
-import { RecoilRoot } from "recoil";
 
 const fontSans = FontSans({
   subsets: ["latin"],

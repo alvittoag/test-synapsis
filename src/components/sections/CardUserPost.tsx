@@ -8,7 +8,7 @@ export default function CardUserPost({ user }: { user: IUsers }) {
       </h1>
 
       <h1 className="md:text-lg font-medium">
-        {user.name}
+        {user.name} {""}
         <span className="text-xs text-gray-500">{`(${user.status})`}</span>
       </h1>
 

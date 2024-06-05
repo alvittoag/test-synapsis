@@ -2,21 +2,25 @@ import CardComments from "@/components/sections/CardComments";
 import CardPost from "@/components/sections/CardPost";
 import CardUserPost from "@/components/sections/CardUserPost";
 import posts from "@/services/posts";
-import { IComments, IPosts, IUsers } from "@/type";
 import React from "react";
 
 const getDetailPosts = async (id: number, userId: number) => {
-  const resDetailPost = await posts.getById(id);
+  try {
+    const resDetailPost = await posts.getById(id);
 
-  const resComments = await posts.getByComments(id);
+    const resComments = await posts.getByComments(id);
 
-  const resUser = await posts.getByUserId(userId);
+    const resUser = await posts.getByUserId(userId);
 
-  return {
-    post: resDetailPost?.data,
-    comments: resComments?.data,
-    user: resUser?.data,
-  };
+    return {
+      post: resDetailPost?.data,
+      comments: resComments?.data,
+      user: resUser?.data,
+    };
+  } catch (err: any) {
+    const errorMessage = err.response.data.message;
+    return { error: errorMessage };
+  }
 };
 
 export default async function DetailPost({
@@ -28,20 +32,23 @@ export default async function DetailPost({
 
   let userId = parseInt(params?.id[1]);
 
-  const {
-    post,
-    comments,
-    user,
-  }: { post: IPosts; comments: IComments[]; user: IUsers } =
-    await getDetailPosts(postId, userId);
+  const data = await getDetailPosts(postId, userId);
 
   return (
     <main>
-      <CardUserPost user={user} />
+      {data.error ? (
+        <p className="mt-32 text-center text-red-600 font-medium text-xl">
+          * {data.error}
+        </p>
+      ) : (
+        <>
+          <CardUserPost user={data?.user} />
 
-      <CardPost item={post} detail />
+          <CardPost item={data?.post} detail />
 
-      <CardComments comments={comments} />
+          <CardComments comments={data.comments} />
+        </>
+      )}
     </main>
   );
 }

@@ -1,8 +1,8 @@
 import { axiosInstance } from "./axios";
 
 export default {
-  getAll: (page: number) => {
-    return axiosInstance.get(`/posts?page=${page ?? 0}&per_page=10`);
+  getAll: () => {
+    return axiosInstance.get(`/posts`);
   },
   getById: (id: number) => {
     return axiosInstance.get(`/posts/${id}`);

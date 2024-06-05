@@ -5,9 +5,13 @@ import TableUser from "@/components/sections/TableUser";
 import users from "@/services/users";
 
 const getUsers = async (search: string) => {
-  const res = await users.getAll(search);
+  try {
+    const res = await users.getAll(search);
 
-  return res.data;
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default async function Users({

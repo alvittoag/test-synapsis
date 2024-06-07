@@ -1,6 +1,25 @@
-import { IUsers } from "@/type";
+"use client";
 
-export default function CardUserPost({ user }: { user: IUsers }) {
+import { IUsers } from "@/type";
+import { toast } from "../ui/use-toast";
+import React from "react";
+
+export default function CardUserPost({
+  user,
+  error,
+}: {
+  user: IUsers;
+  error: string;
+}) {
+  React.useEffect(() => {
+    if (error) {
+      toast({
+        variant: "destructive",
+        description: "User create this post not found",
+      });
+    }
+  }, []);
+
   return (
     <main className="space-y-1 italic mt-4">
       <h1 className="text-gray-500 font-medium text-sm md:text-base">

@@ -45,11 +45,11 @@ export default async function DetailPost({
 
   const { post, comments } = await getDetailPosts(postId);
 
-  const { data: useData } = await getUserPosts(userId);
+  const { data: useData, error: errorUserData } = await getUserPosts(userId);
 
   return (
     <main>
-      <CardUserPost user={useData ?? dummyUser} />
+      <CardUserPost error={errorUserData} user={useData ?? dummyUser} />
 
       <CardPost item={post} detail />
 

@@ -6,19 +6,21 @@ const getPosts = async () => {
   try {
     const res = await posts.getAll();
 
-    return res.data;
-  } catch (error) {
-    console.log(error);
+    return { data: res.data };
+  } catch (err: any) {
+    const errorMessage = err.response.data.message;
+    return { error: errorMessage };
   }
 };
 
-export const revalidate = 10;
+export const revalidate = 3600;
 
 export default async function Home() {
-  const data: IPosts[] = await getPosts();
+  const { data } = await getPosts();
+
   return (
     <main>
-      {data.map((item) => (
+      {data.map((item: IPosts) => (
         <CardPost key={item.id} item={item} />
       ))}
     </main>

@@ -10,9 +10,11 @@ const getUsers = async (search: string) => {
 
     return res.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
+
+export const revalidate = 3600;
 
 export default async function Users({
   searchParams,

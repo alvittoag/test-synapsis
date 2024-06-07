@@ -12,6 +12,8 @@ const getPosts = async () => {
   }
 };
 
+export const revalidate = 10;
+
 export default async function Home() {
   const data: IPosts[] = await getPosts();
   return (
